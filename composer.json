@@ -29,6 +29,7 @@
     },
     "config": {
         "allow-plugins": {
+            "pestphp/pest-plugin": true,
             "php-http/discovery": true,
             "symfony/flex": true,
             "symfony/runtime": true
@@ -82,9 +83,9 @@
         "dama/doctrine-test-bundle": "^8.2.2",
         "doctrine/doctrine-fixtures-bundle": "^4.0",
         "fakerphp/faker": "^1.24.1",
+        "pestphp/pest": "^3.7",
         "phpstan/phpstan": "^2.1.5",
         "phpunit/php-code-coverage": "^11.0.8",
-        "phpunit/phpunit": "^11.5.7",
         "symfony/browser-kit": "7.2.*",
         "symfony/css-selector": "7.2.*",
         "symfony/maker-bundle": "^1.62.1",

@@ -38,7 +38,7 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
     private string $password;
 
     #[Assert\Length(min: 12, max: 255, minMessage: 'Your password must be at least {{ limit }} characters long.'), Assert\PasswordStrength]
-    private ?string $plainPassword;
+    private ?string $plainPassword = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $enabled = false;
