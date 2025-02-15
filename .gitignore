@@ -1,5 +1,5 @@
 .idea
-/.env
+/.env.dev
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -10,3 +10,15 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

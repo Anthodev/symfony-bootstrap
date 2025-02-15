@@ -30,8 +30,8 @@ alias c := composer-install
 alias ss := supervisor-start
 alias sp := supervisor-stop
 
-container-name := "test-foodomarket-php-1"
-docker-running := `docker ps -q --filter name=test-foodomarket-php-1 | grep -q . && echo true || echo false`
+container-name := "symfony-bootstrap-php-1"
+docker-running := `docker ps -q --filter name=symfony-bootstrap-php-1 | grep -q . && echo true || echo false`
 
 d := if docker-running == "true" { "docker exec -t " + container-name + " php" } else { "php" }
 shell := if docker-running == "true" { "docker exec -t " + container-name } else { "" }
@@ -74,7 +74,7 @@ reset-permissions:
 
 #---------- Container commands ----------
 bash:
-    @docker exec -it test-foodomarket-php-1 bash
+    @docker exec -it symfony-bootstrap-php-1 bash
 
 #---------- Symfony commands ----------
 cc:
