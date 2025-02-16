@@ -6,8 +6,8 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Infrastructure\Persistence\Doctrine\User\Entity\User
-                property: email
+                class: App\Domain\Model\User\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,7 +19,7 @@ security:
             provider: app_user_provider
             json_login:
                 check_path: /api/login_check
-                username_path: email
+                username_path: username
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             custom_authenticators:
@@ -27,11 +27,6 @@ security:
             logout:
                 path: app_logout
                 target: app_login
-        
-#        api:
-#            pattern: ^/api
-#            stateless: true
-#            jwt: ~
 
         main:
             lazy: true
@@ -50,6 +45,7 @@ security:
         - { path: ^/api/ping_auth, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/ping, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/, roles: PUBLIC_ACCESS }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

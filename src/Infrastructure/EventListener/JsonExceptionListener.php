@@ -22,18 +22,36 @@ class JsonExceptionListener implements EventSubscriberInterface
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
+        $exceptionCode = $exception->getCode();
 
-        if (!$exception instanceof HttpExceptionInterface) {
-            return;
+        if ($exception instanceof HttpExceptionInterface) {
+            $exceptionCode = $exception->getStatusCode();
+        }
+
+        if ($exceptionCode < 400) {
+            $exceptionCode = 500;
         }
 
         $content = [
-            'code' => $exception->getStatusCode(),
-            'message' => $exception->getMessage(),
+            'code' => $exceptionCode,
+            'message' => $this->createMessage($exceptionCode),
         ];
 
         $event->setResponse(
             new JsonResponse($content, $content['code'])
         );
+    }
+
+    private function createMessage(int $code): string
+    {
+        return match ($code) {
+            400 => 'Bad Request',
+            401, 403 => 'Unauthorized',
+            404 => 'Not Found',
+            415 => 'Unsupported Media Type',
+            422 => 'Unprocessable Entity',
+            429 => 'Too Many Requests',
+            default => 'An error occurred',
+        };
     }
 }
