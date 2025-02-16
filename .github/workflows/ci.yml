@@ -44,6 +44,9 @@ jobs:
         name: Symfony Check Vulnerabilities
         run: symfony check:security
       -
+        name: Generate Lexik JWT Keys
+        run: symfony jwt:generate:key
+      -
         name: Checking standards
         run: just ecs-check
       -
