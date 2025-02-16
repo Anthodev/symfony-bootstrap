@@ -63,7 +63,6 @@ volumes:
     ###> symfony/mercure-bundle ###
     ###< symfony/mercure-bundle ###
     
-    
     ###> doctrine/doctrine-bundle ###
     database_data:
 ###< doctrine/doctrine-bundle ###

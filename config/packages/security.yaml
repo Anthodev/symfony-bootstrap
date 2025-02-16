@@ -27,11 +27,6 @@ security:
             logout:
                 path: app_logout
                 target: app_login
-        
-#        api:
-#            pattern: ^/api
-#            stateless: true
-#            jwt: ~
 
         main:
             lazy: true
@@ -50,6 +45,7 @@ security:
         - { path: ^/api/ping_auth, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/ping, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/, roles: PUBLIC_ACCESS }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
