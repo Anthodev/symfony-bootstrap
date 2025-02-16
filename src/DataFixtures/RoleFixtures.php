@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use App\Domain\Model\User\Role;
 use App\Infrastructure\Enum\RoleCodeEnum;
-use App\Infrastructure\Persistence\Doctrine\User\Entity\Role;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -16,14 +16,16 @@ class RoleFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $adminRole = new Role();
-        $adminRole->setCode(RoleCodeEnum::ROLE_ADMIN->value);
-        $adminRole->setLabel('Admin');
+        $adminRole = new Role(
+            code: RoleCodeEnum::ROLE_ADMIN->value,
+            label: 'Admin',
+        );
         $manager->persist($adminRole);
 
-        $userRole = new Role();
-        $userRole->setCode(RoleCodeEnum::ROLE_USER->value);
-        $userRole->setLabel('User');
+        $userRole = new Role(
+            code: RoleCodeEnum::ROLE_USER->value,
+            label: 'User',
+        );
         $manager->persist($userRole);
 
         $manager->flush();

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
+use App\Domain\Model\User\User;
 use App\Infrastructure\Enum\RoleCodeEnum;
 use App\Infrastructure\Factory\User\UserFactory;
 use App\Infrastructure\Manager\JwtPayloadManager;
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
 use App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineRoleRepository;
-use App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineUserRepositoryDoctrine;
+use App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineUserRepository;
 use App\Tests\Trait\WebUtilsTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -47,8 +47,8 @@ class BaseWebTestCase extends WebTestCase
 
     public function loginUser(string $email): void
     {
-        /** @var DoctrineUserRepositoryDoctrine $userRepository */
-        $userRepository = static::$client->getContainer()->get(DoctrineUserRepositoryDoctrine::class);
+        /** @var DoctrineUserRepository $userRepository */
+        $userRepository = static::$client->getContainer()->get(DoctrineUserRepository::class);
 
         /** @var User|UserInterface $user */
         $user = $userRepository->findOneBy(['email' => $email]);
@@ -80,8 +80,8 @@ class BaseWebTestCase extends WebTestCase
         $user = UserFactory::makeVerifiedUserWithRole(
             email: self::DEFAULT_USER_EMAIL,
             username: 'Test',
-            password: 'test1234',
             role: $roleAdmin,
+            plainPassword: 'test1234',
         );
 
         $this->entityManager->persist($user);
@@ -102,8 +102,8 @@ class BaseWebTestCase extends WebTestCase
         $user = UserFactory::makeVerifiedUserWithRole(
             email: $email,
             username: $username,
-            password: $password,
             role: $roleUser,
+            plainPassword: $password,
         );
 
         if (false === $enabled) {

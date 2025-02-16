@@ -4,30 +4,32 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Factory\User;
 
-use App\Infrastructure\Persistence\Doctrine\User\Entity\Role;
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
+use App\Domain\Model\User\Role;
+use App\Domain\Model\User\User;
 
 class UserFactory
 {
     public static function makeUser(
         string $email,
         string $username,
-        string $password,
+        ?string $password = null,
+        ?string $plainPassword = null,
     ): User {
-        $user = new User();
-        $user->setEmail($email);
-        $user->setUsername($username);
-        $user->setPlainPassword($password);
-
-        return $user;
+        return new User(
+            email: $email,
+            username: $username,
+            password: $password,
+            plainPassword: $plainPassword,
+        );
     }
 
     public static function makeVerifiedUser(
         string $email,
         string $username,
-        string $password,
+        ?string $password = null,
+        ?string $plainPassword = null,
     ): User {
-        $user = self::makeUser($email, $username, $password);
+        $user = self::makeUser($email, $username, $password, $plainPassword);
         $user->setEnabled(true);
 
         return $user;
@@ -36,10 +38,11 @@ class UserFactory
     public static function makeVerifiedUserWithRole(
         string $email,
         string $username,
-        string $password,
         Role $role,
+        ?string $password = null,
+        ?string $plainPassword = null,
     ): User {
-        $user = self::makeVerifiedUser($email, $username, $password);
+        $user = self::makeVerifiedUser($email, $username, $password, $plainPassword);
         $user->setRole($role);
 
         return $user;

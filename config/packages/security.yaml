@@ -6,8 +6,8 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Infrastructure\Persistence\Doctrine\User\Entity\User
-                property: email
+                class: App\Domain\Model\User\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,7 +19,7 @@ security:
             provider: app_user_provider
             json_login:
                 check_path: /api/login_check
-                username_path: email
+                username_path: username
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             custom_authenticators:

@@ -20,9 +20,9 @@ doctrine:
         mappings:
             User:
                 is_bundle: false
-                type: attribute
-                dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/User/Entity'
-                prefix: 'App\Infrastructure\Persistence\Doctrine\User\Entity'
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/config/User'
+                prefix: 'App\Domain\Model\User'
                 alias: User
         controller_resolver:
             auto_mapping: false

@@ -24,3 +24,9 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Infrastructure\Manager\JwtPayloadManager:
         public: true
+    
+    App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineUserRepository:
+        class: App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineUserRepository
+        arguments: [ '@doctrine' ]
+
+    App\Domain\Repository\User\UserRepositoryInterface: '@App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineUserRepository'

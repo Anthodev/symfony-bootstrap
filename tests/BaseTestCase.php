@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
+use App\Domain\Model\User\User;
 use App\Infrastructure\Enum\RoleCodeEnum;
 use App\Infrastructure\Factory\User\UserFactory;
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
 use App\Infrastructure\Persistence\Doctrine\User\Repository\DoctrineRoleRepository;
 use App\Tests\Trait\UtilsTrait;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,8 +39,8 @@ abstract class BaseTestCase extends KernelTestCase
         $user = UserFactory::makeVerifiedUserWithRole(
             email: $email,
             username: $username,
-            password: $password,
-            role: $roleUser
+            role: $roleUser,
+            plainPassword: $password
         );
 
         if (false === $enabled) {
