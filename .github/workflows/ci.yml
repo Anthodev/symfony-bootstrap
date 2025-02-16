@@ -45,7 +45,7 @@ jobs:
         run: symfony check:security
       -
         name: Generate Lexik JWT Keys
-        run: symfony jwt:generate:key
+        run: docker compose exec -T php bin/console lexik:jwt:generate-keypair --overwrite -q -e test
       -
         name: Checking standards
         run: just ecs-check
