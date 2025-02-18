@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Security;
 
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
+use App\Domain\Model\User\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 readonly class PasswordChanger

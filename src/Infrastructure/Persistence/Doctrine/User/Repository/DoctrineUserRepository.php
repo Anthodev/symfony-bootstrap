@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Doctrine\User\Repository;
 
+use App\Domain\Model\User\User;
+use App\Domain\Repository\User\UserRepositoryInterface;
 use App\Infrastructure\Persistence\Doctrine\Common\DoctrineBaseEntityRepository;
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class DoctrineUserRepositoryDoctrine extends DoctrineBaseEntityRepository implements UserLoaderInterface
+class DoctrineUserRepository extends DoctrineBaseEntityRepository implements UserLoaderInterface, UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

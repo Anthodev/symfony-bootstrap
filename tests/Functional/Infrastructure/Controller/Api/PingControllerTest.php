@@ -23,11 +23,11 @@ it('cannot ping the authenticated api', function () {
 
     // Then
     $response = static::$client->getResponse();
-    expect($response->getStatusCode())->toBe(Response::HTTP_UNAUTHORIZED);
+    expect($response->getStatusCode())->toBe(Response::HTTP_FORBIDDEN);
 
     $data = json_decode($response->getContent(), true);
     expect($data['message'])
-        ->toBe('Authentication Required')
+        ->toBe('Unauthorized')
     ;
 });
 

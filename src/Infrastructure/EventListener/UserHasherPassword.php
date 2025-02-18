@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\EventListener;
 
-use App\Infrastructure\Persistence\Doctrine\User\Entity\User;
+use App\Domain\Model\User\User;
 use App\Infrastructure\Security\PasswordChanger;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;

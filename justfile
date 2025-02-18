@@ -89,11 +89,12 @@ setup-database:
     just f
 
 reset-database:
-    just sp
+    @echo "Resetting the database..."
     just ddb
     just cdb
     just sdb
-    just ss
+#    just sp
+#    just ss
 
 drop-database:
     {{console}} doctrine:database:drop --force --if-exists
@@ -137,6 +138,9 @@ stan:
 
 ecs:
     {{d}} vendor/bin/ecs check --fix
+
+ecs-check:
+    {{d}} vendor/bin/ecs check
 
 #---------- Composer commands ----------
 composer-install:

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\EventListener;
 
-use App\Infrastructure\Persistence\Doctrine\Common\EntityInterface;
+use App\Domain\Model\Common\ModelInterface;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -18,7 +18,7 @@ class EntityListener
     {
         $entity = $eventArgs->getObject();
 
-        if (!$entity instanceof EntityInterface) {
+        if (!$entity instanceof ModelInterface) {
             return;
         }
 
@@ -30,7 +30,7 @@ class EntityListener
     {
         $entity = $eventArgs->getObject();
 
-        if (!$entity instanceof EntityInterface) {
+        if (!$entity instanceof ModelInterface) {
             return;
         }
 
